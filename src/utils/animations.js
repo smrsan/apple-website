@@ -35,7 +35,7 @@ export const animateWithGsapTimeline = (
             ...animationProps,
             ease: "power2.inOut",
         },
-        "<"
+        "<" // Insert the animation at the start of the previous animation
     );
 
     timeline.to(
