@@ -30,36 +30,21 @@ const Model = () => {
     const [smallRotation, setSmallRotation] = useState(0);
     const [largeRotation, setLargeRotation] = useState(0);
 
-    const tl = gsap.timeline();
-
     useEffect(() => {
-        if (size === "large") {
-            animateWithGsapTimeline(
-                tl,
-                small,
-                smallRotation,
-                "#view1",
-                "#view2",
-                {
-                    transform: "translateX(-100%)",
-                    duration: 2,
-                }
-            );
-        }
+        const tl = gsap.timeline();
+        const isSmall = size === "small";
 
-        if (size === "small") {
-            animateWithGsapTimeline(
-                tl,
-                large,
-                largeRotation,
-                "#view2",
-                "#view1",
-                {
-                    transform: "translateX(0)",
-                    duration: 2,
-                }
-            );
-        }
+        animateWithGsapTimeline(
+            tl,
+            isSmall ? small : large,
+            isSmall ? smallRotation : largeRotation,
+            isSmall ? "#view1" : "#view2",
+            isSmall ? "#view2" : "#view1",
+            {
+                transform: "translateX(-100%)",
+                duration: 2,
+            }
+        );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [size]);
 
